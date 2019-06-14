@@ -2,5 +2,5 @@ name: Thomas Nguyen
 studentNumber: z5060154
 officialEmail: z5060154@ad.unsw.edu.au
 contactEmail:
-  firstBit: firstName.Lastname  # this avoids spam, the @ is implied
-  otherBit: whereIwork.com
+  firstBit: Don't  # this avoids spam, the @ is implied
+  otherBit: me.com
