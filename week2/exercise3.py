@@ -7,7 +7,10 @@ def is_odd(a_number):
 
     Look into modulo division using the '%' operator as one way of doing this.
     """
-    return None
+    if a_number%2 == 0:
+        return False
+    else:
+        return True
 
 
 def fix_it(moves=True, should_move=True):
@@ -25,7 +28,13 @@ def fix_it(moves=True, should_move=True):
     Most people write this function with 4 return statements. 
     As an extra challenge, see if you can get that down to three.
     """
-    return None
+
+    if moves == True and should_move == False:
+        return "Duct Tape"
+    elif moves == False and should_move == True:
+        return "WD-40"
+    else:
+        return "No Problem"
 
 
 def loops_1a():
@@ -35,7 +44,10 @@ def loops_1a():
     return a list of 10 items, each one a string with exacly one star in it.
     E.g.: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*']
     """
-    return None
+    starlist = []
+    for i in range(10):
+        starlist.append("*")
+    return starlist
 
 
 def loops_1c(number_of_items=5, symbol="#"):
@@ -45,7 +57,10 @@ def loops_1c(number_of_items=5, symbol="#"):
     string with exacly one symbol in it.
     E.g.: ['#', '#', '#', '#', '#']
     """
-    return None
+    repeatlist = []
+    for i in range(number_of_items):
+        repeatlist.append(symbol)
+    return repeatlist
 
 
 def loops_2():
@@ -66,7 +81,13 @@ def loops_2():
             ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
           ]
     """
-    return None
+    matrix = []
+    for i in range(10):
+        line = []
+        for j in range(10):
+            line.append("*")
+        matrix.append(line)
+    return matrix
 
 
 def loops_3():
@@ -90,7 +111,13 @@ def loops_3():
     TIP: notice that this needs to to return strings of numbers,
          so call str(number) to cast.
     """
-    return None
+    matrix_number = []
+    for i in range(10):
+        line = []
+        for j in range(10):
+            line.append(str(i))
+        matrix_number.append(line)
+    return matrix_number
 
 
 def loops_4():
@@ -110,7 +137,13 @@ def loops_4():
       ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     ]
     """
-    return None
+    loop_4_matrix = []
+    for i in range(10):
+        loop_4_list = []
+        for j in range(10):
+            loop_4_list.append(str(j))
+        loop_4_matrix.append(loop_4_list)
+    return loop_4_matrix
 
 
 def loops_5():
@@ -137,7 +170,14 @@ def loops_5():
         "There are {} green bottles".format(8)
     you'll come to see the pros and cons of each over time.
     """
-    return None
+    loops_5_matrix = []
+    for i in range(10):
+        loops_5_list = []
+        for j in range(5):
+            #loops_5_tuple = ("i"+str(i),"j"+str(j))
+            loops_5_list.append("(i{}, j{})".format(i,j))
+        loops_5_matrix.append(loops_5_list)
+    return loops_5_matrix
 
 
 def loops_6():
@@ -160,7 +200,15 @@ def loops_6():
     You can use a variable.
     TIP: look out for the starting condition.
     """
-    return None
+    loops_6_matrix = []
+    length = 1
+    for i in range(10):
+        loops_6_list = []
+        for j in range(length):
+            loops_6_list.append(str(j))
+        length += 1
+        loops_6_matrix.append(loops_6_list)
+    return loops_6_matrix
 
 
 def loops_7():
@@ -183,8 +231,22 @@ def loops_7():
     (this is what will print when you test from inside this file)
     This is a hard problem. Use lots of experimentation and draw
     lots of diagrams!
+
     """
-    return None
+    
+    loops_7_matrix = []
+    for i in range(5):
+        loops_7_list = []
+        star = 1+(2*i)
+        space = int((9-star)/2)
+        for j in range(space):
+            loops_7_list.append(" ")
+        for j in range(star):
+            loops_7_list.append("*")
+        for j in range(space):
+            loops_7_list.append(" ")
+        loops_7_matrix.append(loops_7_list)
+    return loops_7_matrix
 
 
 def lp(some_kind_of_list, exercise_name):
