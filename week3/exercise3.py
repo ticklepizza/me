@@ -5,6 +5,43 @@ Steps on the way to making your own guessing game.
 
 import random
 
+def not_number_rejector(message):
+    """Ask for a number repeatedly until actually given one.
+
+    Ask for a number, and if the response is actually NOT a number 
+    (e.g. "cow", "six", "8!") then throw it out and ask for an actual number.
+    When you do get a number, return it.
+    """
+    while True:
+        try:
+            print(message)
+            not_number_input = int(input())
+        except Exception:
+            pass
+        else:
+            break
+        
+    return not_number_input
+
+
+def super_asker(low, high):
+    """Robust asking function.
+
+    Combine what you learnt from stubborn_asker and not_number_rejector
+    to make a function that does it all!
+    Try to call at least one of the other functions to minimise the
+    amount of code.
+    """
+    number = not_number_rejector("Enter a number: ")
+    while number < low or number > high:
+        if number < low:
+            print("Out of bounds, too low")
+            number = not_number_rejector("Enter a number: ")
+        else:
+            print("Out of bounds, too high")
+            number = not_number_rejector("Enter a number: ")
+    
+    return number
 
 def advancedGuessingGame():
     """Play a guessing game with a user.
@@ -25,7 +62,18 @@ def advancedGuessingGame():
     Remember to think modular. Try to keep your functions small and single
     purpose if you can!
     """
-
+    lowerbound = not_number_rejector("Enter low bound: ")
+    upperbound = not_number_rejector("Enter upper bound: ")
+    actualNumber = random.randint(lowerbound, upperbound)
+    guessed = False
+    while not guessed:
+      guessedNumber = super_asker(lowerbound,upperbound)
+      if guessedNumber == actualNumber:
+        guessed = True
+      elif guessedNumber < actualNumber:
+        print("Too low, try again")
+      else:
+        print("Too high, try again")
     return "You got it!"
     # the tests are looking for the exact string "You got it!". Don't modify that!
 
