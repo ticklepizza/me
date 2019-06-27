@@ -35,7 +35,7 @@ while is for condition loop
 for is a set number of loop use range()
 
 ##Flowchart remade:
-![Flowchart](week2/WD40_Ducttape.jpg)
+![Flowchart](WD40_Ducttape.jpg)
 
 ##Loop 5 was very annoying: 
 Answer was looking for a string as with brackets in it and coordinates inside. I interpreted as a tuple inside a string.... I left the tuple as a comment out of spite.
