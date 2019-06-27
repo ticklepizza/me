@@ -15,5 +15,8 @@ cool program similar to the last function in exercise 1.
 #Exercise 3:
 Was not too difficult just needed the super_asker for the main function section and not_number_rejector for the boundaries.
 
-Exercise 4:
+#Exercise 4:
 This section was easy if because of the reading material from khan academy went through binary searches and provided easy to understand pseudo code of it. Only thing I needed help with was dictionary manipulation.
+
+##Update:
+I'm having trouble with optimising the code to have less tries :( 

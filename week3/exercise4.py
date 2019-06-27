@@ -28,13 +28,15 @@ def binary_search(low, high, actual_number):
     max = high
     tries = 0
     guess = 0
-    while guess != actual_number:
+    while max > min:
         guess = int((min + max)/2)
         tries += 1
         if guess < actual_number:
-            min = guess+1
+            min = guess
+        elif guess > actual_number:
+            max = guess
         else:
-            max = guess - 1
+            break
     return {"guess": guess, "tries": tries}
 
 
