@@ -20,3 +20,6 @@ This section was easy if because of the reading material from khan academy went 
 
 ## Update:
 I'm having trouble with optimising the code to have less tries :( 
+
+- [x] working binary search
+- [ ] pass every test
