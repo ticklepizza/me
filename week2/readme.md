@@ -4,21 +4,33 @@ TODO: Reflect on what you learned this week and what is still unclear.
 
 I haven't touched python in too long all these arguments and function commands are hard to remember let alone look for. The nuance differences between the vast python commands makes life hard :'(.
 
-converting to int to str:
-str(int)
+converting to int to str and back:
+```python
+integer = 0
+str(integer)
+'0'
+string = '5'
+int(string)
+5
+```
 
 converting upper:
+```python
 string.upper()
+```
 or
+```python
 string.ascii_upper()
-
+```
 
 #Exercise 1:
 I got the answers mostly...
 An array was the wrong term. I looked it up these are lists. Almost the same but array is not as versatile for manipulation
 
-List use []
-Array is Array([])
+```python
+List = []
+Array = Array([])
+```
 
 
 # Exercise 2:
@@ -29,7 +41,7 @@ Work isn't too hard just need to read over python documentation and trial and er
 
 Gotta remember to initialise lists before calling them with an empty list.
 
-eg. list1 = []
+eg. `list1 = []`
 
 while is for condition loop
 for is a set number of loop use range()
