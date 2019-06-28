@@ -23,3 +23,7 @@ I'm having trouble with optimising the code to have less tries :(
 
 - [x] working binary search
 - [ ] pass every test
+
+## Update 2:
+I did it just changed `min` from `guess` to `guess + 1` and similar to `max`.
+Had to change the while loop condition to be `max < min` compared the just testing whether `guess == actual_number` which can just be a conditional test, eg. `if` statement.
