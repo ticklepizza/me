@@ -36,7 +36,10 @@ def get_some_details():
     json_data = open(LOCAL + "/lazyduck.json").read()
 
     data = json.loads(json_data)
-    return {"lastName": None, "password": None, "postcodePlusID": None}
+    last = data["results"][0]["name"]["last"]
+    passC = data["results"][0]["login"]["password"]
+    postPlusID = data["results"][0]["location"]["postcode"] + int(data["results"][0]["id"]["value"])
+    return {"lastName": last, "password": passC, "postcodePlusID": postPlusID}
 
 
 def wordy_pyramid():
@@ -74,32 +77,59 @@ def wordy_pyramid():
     ]
     TIP: to add an argument to a URL, use: ?argName=argVal e.g. &minLength=
     """
-    pass
+    template = "http://api.wordnik.com/v4/words.json/randomWords?api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5&minLength={minLength}&maxLength={maxLength}&limit={limit}"
+    minLength = 3
+    maxLength = 20
+    limit = 1
+    nameList = []
+    length = minLength
+    while length <= maxLength:
+        url = template.format(base = template, minLength = length, maxLength = length, limit = limit)
+        r = requests.get(url)
+        if r.status_code is 200:
+            data = json.loads(r.text)
+            if data[0]["word"] is None:
+                pass
+            else:
+             nameList.insert(int(len(nameList)/2),data[0]["word"])
+             #print(str(length)+ "\t" + data[0]["word"])
+             length += 1
+    nameList.reverse()
+    return nameList
 
 
-def wunderground():
-    """Find the weather station for Sydney.
+def pokedex(low=1, high=5):
+    """ Return the name, height and weight of the tallest pokemon in the range low to high.
 
-    Get some json from a request parse it and extract values.
-    Sign up to https://www.wunderground.com/weather/api/ and get an API key
+    Low and high are the range of pokemon ids to search between.
+    Using the Pokemon API: https://pokeapi.co get some JSON using the request library
+    (a working example is filled in below).
+    Parse the json and extract the values needed.
+    
     TIP: reading json can someimes be a bit confusing. Use a tool like
          http://www.jsoneditoronline.org/ to help you see what's going on.
     TIP: these long json accessors base["thing"]["otherThing"] and so on, can
          get very long. If you are accessing a thing often, assign it to a
          variable and then future access will be easier.
     """
-    base = "http://api.wunderground.com/api/"
-    api_key = "YOUR KEY - REGISTER TO GET ONE"
-    country = "AU"
-    city = "Sydney"
-    template = "{base}/{key}/conditions/q/{country}/{city}.json"
-    url = template.format(base=base, key=api_key, country=country, city=city)
-    r = requests.get(url)
-    if r.status_code is 200:
-        the_json = json.loads(r.text)
-        obs = the_json["current_observation"]
+    template = "https://pokeapi.co/api/v2/pokemon/{id}"
 
-    return {"state": None, "latitude": None, "longitude": None, "local_tz_offset": None}
+    
+    height = 0
+    weight = 0
+    name = ""
+    for i in range(low,high):
+        url = template.format(base=template, id=i)
+        r = requests.get(url)
+        if r.status_code is 200:
+            the_json = json.loads(r.text)
+            if the_json["height"] > height:
+                height = the_json["height"]
+                weight = the_json["weight"]
+                name = the_json["name"]
+
+    
+    return {"name": name, "weight": weight, "height": height}
 
 
 def diarist():
@@ -114,7 +144,24 @@ def diarist():
          might be why. Try in rather than == and that might help.
     TIP: remember to commit 'lasers.pew' and push it to your repo, otherwise
          the test will have nothing to look at.
+    TIP: this might come in handy if you need to hack a 3d print file in the future.
     """
+    filepath = "week4/Trispokedovetiles(laser).gcode"
+    mode = "r" #for reading
+    laserReader = open(filepath,mode)
+    counter = 0
+    #laserOn = "M11 P1"
+    laserOff = "M10 P1"
+    for lineReader in laserReader:
+        #print(lineReader)
+        if laserOff in lineReader:
+            counter += 1
+    laserReader.close()
+    filepath = "./week4/lasers.pew"
+    mode = "w" # for writing
+    laserWriter = open(filepath,mode)
+    laserWriter.write(str(counter))
+    laserWriter.close()
     pass
 
 
