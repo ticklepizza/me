@@ -163,7 +163,7 @@ while True:
             print('You have run out of guesses!\nAfter ' +
                   str(len(missedLetters)) + ' missed guesses and ' +
                   str(len(correctLetters)) +
-                  ' correct guesses, the word was "' + str(len(correctLetters)) + '"')
+                  ' correct guesses, the word was "' + secretWord + '"')
             gameIsDone = True
 
     elapsed_time = time.time() - start_time
