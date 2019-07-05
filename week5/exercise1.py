@@ -49,7 +49,17 @@ def do_bunch_of_bad_things():
 # return a list of countdown messages, much like in the bad function above.
 # It should say something different in the last message.
 def countdown(message, start, stop, completion_message):
-    pass
+    countdownList = []
+    if stop > start:
+        for i in range(start, stop + 1, 1):
+            print(message,str(i))
+        countdownList.append(completion_message)
+    else:
+        for i in range(start, stop - 1, -1):
+            print(message,str(i))
+        print(completion_message)
+
+    return None
 
 
 # TRIANGLES
@@ -62,32 +72,39 @@ def countdown(message, start, stop, completion_message):
 # The stub functions are made for you, and each one is tested, so this should
 # hand hold quite nicely.
 def calculate_hypotenuse(base, height):
-    pass
+    return (base ** 2 + height ** 2) ** (1 / 2)
 
 
 def calculate_area(base, height):
-    pass
+    return (base * height) / 2
 
 
 def calculate_perimeter(base, height):
-    pass
+    return calculate_hypotenuse(base, height) + base + height
 
 
 def calculate_aspect(base, height):
-    pass
+    aspect = ""
+    if height > base:
+        aspect = "tall"
+    elif height < base:
+        aspect = "wide"
+    else:
+        aspect = "equal"
+    return aspect
 
 
 # Make sure you reuse the functions you've already got
 # Don't reinvent the wheel
 def get_triangle_facts(base, height, units="mm"):
     return {
-        "area": None,
-        "perimeter": None,
-        "height": None,
-        "base": None,
-        "hypotenuse": None,
-        "aspect": None,
-        "units": None,
+        "area": calculate_area(base, height),
+        "aspect": calculate_aspect(base, height),
+        "base": base,
+        "height": height,
+        "hypotenuse": calculate_hypotenuse(base, height),
+        "perimeter": calculate_perimeter(base, height),
+        "units": units,
     }
 
 
@@ -137,17 +154,30 @@ def tell_me_about_this_right_triangle(facts_dictionary):
         "It has a perimeter of {perimeter}{units}\n"
         "This is a {aspect} triangle.\n"
     )
-
+    if facts_dictionary["aspect"] == "tall":
+        diagram = tall.format(**facts_dictionary)
+    elif facts_dictionary["aspect"] == "wide":
+        diagram = wide.format(**facts_dictionary)
+    else:
+        diagram = equal.format(**facts_dictionary)
     facts = pattern.format(**facts_dictionary)
+    return diagram + "\n" + facts
 
 
 def triangle_master(base, height, return_diagram=False, return_dictionary=False):
+    facts = get_triangle_facts(base,height)
+    diagram = tell_me_about_this_right_triangle(facts)
     if return_diagram and return_dictionary:
-        return None
+        return {
+            "diagram": diagram,
+            "facts": facts
+        }
     elif return_diagram:
-        return None
+        return diagram
     elif return_dictionary:
-        return None
+        return {
+            "facts": facts
+        }
     else:
         print("You're an odd one, you don't want anything!")
 
@@ -183,12 +213,46 @@ def wordy_pyramid(api_key):
 
 
 def get_a_word_of_length_n(length):
-    pass
+    import requests
+
+    baseURL = (
+        "http://api.wordnik.com/v4/words.json/randomWords?"
+        "api_key={api_key}"
+        "&minLength={length}"
+        "&maxLength={length}"
+        "&limit=1"
+    )
+    api_key = "a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5"
+    url = baseURL.format(api_key=api_key, length=length)
+    r = requests.get(url)
+    if r.status_code is 200:
+        message = r.json()[0]["word"]
+    else:
+        message = "failed a request " + str(r.status_code) + " " + str(length)
+    return message
 
 
 def list_of_words_with_lengths(list_of_lengths):
-    pass
+    import requests
 
+    baseURL = (
+        "http://api.wordnik.com/v4/words.json/randomWords?"
+        "api_key={api_key}"
+        "&minLength={length}"
+        "&maxLength={length}"
+        "&limit=1"
+    )
+    api_key = "a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5"
+    list_of_words = []
+    for length in list_of_lengths:
+        url = baseURL.format(api_key=api_key, length=length)
+        r = requests.get(url)
+        if r.status_code is 200:
+            message = r.json()[0]["word"]
+            list_of_words.append[message]
+        else:
+            print("failed a request", r.status_code, length)
+        return list_of_words
 
 if __name__ == "__main__":
     do_bunch_of_bad_things()

@@ -24,14 +24,14 @@ def italian_dinner(axiom="tomatoes", guard=6):
     operations.
 
     The most general way of characterising a production system is to see it as
-    a formal language based on symbol manipulation. They habe much in common
+    a formal language based on symbol manipulation. They have much in common
     with formal systems in logic in that:
         1.  they start with an axiom, which is given of the formal system;
-        2.  there are a set of statements inthe formal system which can be
+        2.  there are a set of statements in the formal system which can be
             thought of as theroums of the system; and
         3.  there are a set of rules for transforming any statement which is
             part of the formal system into any other using replacement rules.
-    In the itallian dinner, teh axiom is of course _tomatoes_
+    In the itallian dinner, the axiom is of course _tomatoes_
 
     Note that in order for this to work, we need to have at least one word in
     the right-hand side that matches one of the words in the left-hand side.
@@ -99,16 +99,25 @@ def abba(source="abba", guard=3):
         Hint: when guard == -1 return the letter.
         """
         if letter == "a":
-            return "a"
+            return "bba"
         elif letter == "b":
-            return "b"
+            return "aob"
         elif letter == "o":
-            return "o"
+            return "oa"
         else:
             return letter
 
-    # write the rest of the function here
-    pass
+    parts = list(source)
+    result = []
+    for letter in parts:
+        result.append(apply_rules(letter,guard))
+        #print(apply_rules(letter,guard))
+    new_string = "".join(result)
+    guard -= 1
+    if guard > 0:
+        return abba(new_string, guard)
+    else:
+        return new_string
 
 
 def koch(t, order, size):
@@ -143,7 +152,7 @@ def draw_koch(drawing_method, steps_deep=4):
 
 
 def square_koch(t, order, size):
-    r"""Draw a koch curve with a square rather than a triangular point.
+    """Draw a koch curve with a square rather than a triangular point.
 
            _
     e.g. _| |_ rather than _/\_
@@ -152,7 +161,18 @@ def square_koch(t, order, size):
 
     """
     trace = ""
-    # write the rest of the function here.
+    if order == 0:          # The base case is just a straight line
+        t.forward(size)
+    else:
+        trace += square_koch(t, order-1, size/3)   # Go 1/3 of the way
+        t.left(90)
+        trace += square_koch(t, order-1, size/3)
+        t.right(90)
+        trace += square_koch(t, order-1, size/3)
+        t.right(90)
+        trace += square_koch(t, order-1, size/3)
+        t.left(90)
+        trace += square_koch(t, order-1, size/3)
     return str(order) + trace
     pass
 
