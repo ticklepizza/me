@@ -49,15 +49,9 @@ def do_bunch_of_bad_things():
 # return a list of countdown messages, much like in the bad function above.
 # It should say something different in the last message.
 def countdown(message, start, stop, completion_message):
-    countdownList = []
-    if stop > start:
-        for i in range(start, stop + 1, 1):
-            print(message,str(i))
-        countdownList.append(completion_message)
-    else:
-        for i in range(start, stop - 1, -1):
-            print(message,str(i))
-        print(completion_message)
+    for i in range(start, stop-1, -1):
+        print(message,str(i))
+    print(completion_message)
 
     return None
 
@@ -165,7 +159,7 @@ def tell_me_about_this_right_triangle(facts_dictionary):
 
 
 def triangle_master(base, height, return_diagram=False, return_dictionary=False):
-    facts = get_triangle_facts(base,height)
+    facts = get_triangle_facts(base,height,units ="mm")
     diagram = tell_me_about_this_right_triangle(facts)
     if return_diagram and return_dictionary:
         return {
@@ -175,9 +169,7 @@ def triangle_master(base, height, return_diagram=False, return_dictionary=False)
     elif return_diagram:
         return diagram
     elif return_dictionary:
-        return {
-            "facts": facts
-        }
+        return facts
     else:
         print("You're an odd one, you don't want anything!")
 
