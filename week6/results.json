@@ -2,9 +2,11 @@
     "username_me": "ticklepizza",
     "username_partner": "adi1096",
     "username_partner2": "JetTheCat",
-    "commit_me": "https://github.com/<YOUR-GITHUB>/tf-pose-estimation/commit/<thecommitSHA>",
-    "commit_partner": "https://github.com/<YOUR-GITHUB>/tf-pose-estimation/commit/<thecommitSHA>",
-    "commit_coauthor": "https://github.com/<YOUR-GITHUB>/tf-pose-estimation/commit/<thecommitSHA>",
-    "screenshot_me": "/path/to/your/screenshot.jpg",
-    "screenshot_partner": "/path/to/partner/screenshot.jpg"
+    "commit_me": "https://github.com/<YOUR-GITHUB>/tf-pose-estimation/commit/2ccd25e1c7aec765b434814ac95184af28af3bd2",
+    "commit_partner": "https://github.com/<YOUR-GITHUB>/tf-pose-estimation/commit/<6511c38f80320d0f32f25d5e478a3db304656fcd>",
+    "commit_partner2": "https://github.com/<YOUR-GITHUB>/tf-pose-estimation/commit/<8588794567ca5dc1270c2308e28d7af06d9ad9da>",
+    "commit_coauthor": "https://github.com/<YOUR-GITHUB>/tf-pose-estimation/commit/<0ca58f178a43b15b18b50c28704bccd51d556498>",
+    "screenshot_me": "./screenshot1.png",
+    "screenshot_partner": "/screenshot2.png",
+    "screenshot_partner2": "/screenshot3.png"
   }
