@@ -77,23 +77,17 @@ def wordy_pyramid():
     ]
     TIP: to add an argument to a URL, use: ?argName=argVal e.g. &minLength=
     """
-    template = "http://api.wordnik.com/v4/words.json/randomWords?api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5&minLength={minLength}&maxLength={maxLength}&limit={limit}"
-    minLength = 3
-    maxLength = 20
-    limit = 1
+    template = "https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?wordlength={length}"
     nameList = []
-    length = minLength
-    while length <= maxLength:
-        url = template.format(base = template, minLength = length, maxLength = length, limit = limit)
+    length = 3
+    while length <= 20:
+        url = template.format(base = template, length = length)
         r = requests.get(url)
         if r.status_code is 200:
-            data = json.loads(r.text)
-            if data[0]["word"] is None:
-                pass
-            else:
-             nameList.insert(int(len(nameList)/2),data[0]["word"])
-             #print(str(length)+ "\t" + data[0]["word"])
-             length += 1
+            data = r.text
+            nameList.insert(int(len(nameList)/2),data)
+            #print(str(length)+ "\t" + data)
+            length += 1
     nameList.reverse()
     return nameList
 
