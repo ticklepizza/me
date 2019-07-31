@@ -26,6 +26,10 @@ will output:
 ```
 For this specific case, the order will look something like [2,4,6,5,3,1] which can be reverse using `reverse()` to get the desired order.
 
+## UPDATO
+So the wordy api was not great for the whole class to use so Ben wrote his own (MVP).
+Had to change it up found that since it only gave one word at a time the data came in was no longer in json format had to change up code slightly to reflect that and changed variables to reflect the reduced input arguments in the new URL.
+
 # pokedex api
 This one was not too difficult the items needed for the tallest poke in the given range were:
 * Name
