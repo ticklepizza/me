@@ -178,26 +178,23 @@ def wordy_pyramid(api_key):
     import requests
 
     baseURL = (
-        "http://api.wordnik.com/v4/words.json/randomWords?"
-        "api_key={api_key}"
-        "&minLength={length}"
-        "&maxLength={length}"
-        "&limit=1"
+        "https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?"
+        "wordlength={length}"
     )
     pyramid_list = []
     for i in range(3, 21, 2):
-        url = baseURL.format(api_key="", length=i)
+        url = baseURL.format(length=i)
         r = requests.get(url)
         if r.status_code is 200:
-            message = r.json()[0]["word"]
+            message = r.text
             pyramid_list.append(message)
         else:
             print("failed a request", r.status_code, i)
     for i in range(20, 3, -2):
-        url = baseURL.format(api_key="", length=i)
+        url = baseURL.format(length=i)
         r = requests.get(url)
         if r.status_code is 200:
-            message = r.json()[0]["word"]
+            message = r.text
             pyramid_list.append(message)
         else:
             print("failed a request", r.status_code, i)
@@ -206,42 +203,41 @@ def wordy_pyramid(api_key):
 
 def get_a_word_of_length_n(length):
     import requests
-
-    baseURL = (
-        "http://api.wordnik.com/v4/words.json/randomWords?"
-        "api_key={api_key}"
-        "&minLength={length}"
-        "&maxLength={length}"
-        "&limit=1"
-    )
-    api_key = "a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5"
-    url = baseURL.format(api_key=api_key, length=length)
-    r = requests.get(url)
-    if r.status_code is 200:
-        message = r.json()[0]["word"]
+    if type(length) is int:
+        if length > 3:
+            baseURL = (
+                "https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?"
+                "wordlength={length}"
+            )
+            url = baseURL.format(length=length)
+            r = requests.get(url)
+            if r.status_code is 200:
+                message = r.text
+            else:
+                message = "failed a request " + str(r.status_code) + " " + str(length)
+            return message
+        else:
+            message = "Length must be above 3 characters"
+            return None
     else:
-        message = "failed a request " + str(r.status_code) + " " + str(length)
-    return message
+        message = "Length must be an integer and above 3"
+        return None
 
 
 def list_of_words_with_lengths(list_of_lengths):
     import requests
 
     baseURL = (
-        "http://api.wordnik.com/v4/words.json/randomWords?"
-        "api_key={api_key}"
-        "&minLength={length}"
-        "&maxLength={length}"
-        "&limit=1"
+        "https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?"
+        "wordlength={length}"
     )
-    api_key = "a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5"
     list_of_words = []
     for length in list_of_lengths:
-        url = baseURL.format(api_key=api_key, length=length)
+        url = baseURL.format(length=length)
         r = requests.get(url)
         if r.status_code is 200:
-            message = r.json()[0]["word"]
-            list_of_words.append[message]
+            message = r.text
+            list_of_words.append(message)
         else:
             print("failed a request", r.status_code, length)
         return list_of_words

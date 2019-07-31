@@ -25,6 +25,9 @@ Had to just run tests to find out what was wrong, was not sure what it wanted.
 ## Update: I did it all wrong :(
 I was not supposed to complete the function for everything
 
+## Wordy pyramid
+Similar to week 4 just went back and changed the url and change in data format, no longer JSON.
+
 # Exercise 2
 This was hard to wrap my head around, so mainly guard represents how many recursive repetitions you want.
 
