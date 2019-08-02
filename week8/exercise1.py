@@ -204,7 +204,7 @@ def fast_filler(number_of_words=200):
     wordDictFile = open("dict_racey.json","r")
     wordDict = json.load(wordDictFile)
     wordList = []
-    for i in range(number_of_words-1):
+    for i in range(number_of_words):
         length = str(random.randint(3,7))
         word = random.randint(0,2)
         wordList.append(wordDict[length][word])
